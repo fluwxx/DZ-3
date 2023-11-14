@@ -7,45 +7,34 @@ console.log(tagCounts)
 
 
 
-class Starbucks {
-    constructor() {
-        this.menu = {
-            coffee: {
-                espresso: "Strong black coffee made by forcing hot water through finely-ground coffee beans.",
-                latte: "Coffee with steamed milk and a small amount of foam.",
-                cappuccino: "Coffee with a frothy layer of steamed milk."
-                // Добавьте другие разновидности кофе
-            },
-            tea: {
-                greenTea: "Unoxidized tea known for its fresh taste and health benefits.",
-                earlGrey: "Black tea flavored with oil of bergamot.",
-                chai: "Spiced tea with a mixture of aromatic Indian spices and herbs."
-                // Добавьте другие разновидности чая
-            }
-        };
-    }
+var starbucks = {
+    coffee:{
+        espresso: "Strong black coffee made by forcing hot water through finely-ground coffee beans.",
+        latte: "Coffee with steamed milk and a small amount of foam.",
+        cappuccino: "Coffee with a frothy layer of steamed milk."
+    },
+    tea:{
+        greenTea: "Unoxidized tea known for its fresh taste and health benefits.",
+        earlGrey: "Black tea flavored with oil of bergamot.",
+        chai: "Spiced tea with a mixture of aromatic Indian spices and herbs."
+    },
+};
 
-    acceptOrder(item) {
-        const formattedItem = item.toLowerCase();
-        if (this.menu.coffee.hasOwnProperty(formattedItem)) {
-            return ('order accepted!')
-        } else if (this.menu.tea.hasOwnProperty(formattedItem)) {
-            return ('Order accepted!')
+
+function order(type, name) {
+    var category = starbucks[type];
+
+    if (category) {
+        var item = category[name];
+
+        if (item) {
+            console.log(`Order accepted! You've ordered a ${name}: ${item}`);
         } else {
-            return "Error: Item not found. Please choose a valid coffee or tea option.";
+            console.error(`Error: ${name} ${type}`);
         }
+    } else {
+        console.error(`Error: ${type}`);
     }
 }
 
-
-const starbucksMenu = new Starbucks();
-
-
-const order1 = starbucksMenu.acceptOrder("latte");
-console.log(order1);
-
-const order2 = starbucksMenu.acceptOrder("greenTea");
-console.log(order2);
-
-const order3 = starbucksMenu.acceptOrder("caramelMacchiato");
-console.log(order3);
+order('tea','chai')
